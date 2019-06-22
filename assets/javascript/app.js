@@ -1,8 +1,49 @@
 //THE BASICS
 // Create global variables for the wining losing and unanswered 
+var wins = 0
+var looses = 0
+var unanswered = 0
+
 // A function create an array with the questions
+var arrQuestions=[
+    "QUESTION 0: B is right",
+    "QUESTION 1: C is right",
+    "QUESTION 2:  D is right ",
+    "QUESTION 3: A is right"
+]
 // Relate arrQuestions[I]  create and object that has 1[], 2[], 3[] arrAnswers I[] (this way we can call that particular number name in the array the answers)
 //Those answers have to be true or false
+var answers = {
+    ceroAnswer:[{
+        A:"Answer A",
+        B:"Answer B",
+        C:"Answer C",
+        D:"Answer D"
+    }],
+    oneAnswer:[{
+        A:"Answer A",
+        B:"Answer B",
+        C:"Answer C",
+        D:"Answer D"
+    }],
+    twoAnswer:[{
+        A:"Answer A",
+        B:"Answer B",
+        C:"Answer C",
+        D:"Answer D"
+    }],
+    threeAnswer:[{
+        A:"Answer A",
+        B:"Answer B",
+        C:"Answer C",
+        D:"Answer D"
+    }],
+}
+ 
+//Function that picks a random question
+var randomNumber = Math.floor(Math.random() * arrQuestions.length)
+var randomQuestion = arrQuestions[randomNumber]
+
 
 //THE DISPLAY
 // Jquery that calls each text id to change it with questions and answers
