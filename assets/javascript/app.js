@@ -13,7 +13,8 @@ $(document).ready(function () {
             answerA: "A from 1",
             answerB: "B from 1",
             answerC: "C from 1",
-            answerD: "D from 1"
+            answerD: "D from 1",
+            correctAnswer: "a"
         },
         questionTwo: {
             Question: "QUESTION 2",
@@ -21,8 +22,10 @@ $(document).ready(function () {
             answerB: "B from 2",
             answerC: "C from 2",
             answerD: "D from 2"
+
         }
     }
+
 
     //Pick a random question
     /** 
@@ -37,7 +40,6 @@ $(document).ready(function () {
     //THE TIME:
 
     //Create a timer
-    //Interva
     var clockRuns = false;
     var time = 60;
 
@@ -63,7 +65,7 @@ $(document).ready(function () {
     }
 
 
-    //Use the timeconverter from past exercise so the time is not displayed in milliseconds
+    //Use the Time converter from past exercise so the time is not displayed in milliseconds
     function timeConverter(t) {
 
         //  Takes the current time in seconds and convert it to minutes and seconds (mm:ss).
@@ -85,23 +87,81 @@ $(document).ready(function () {
         return minutes + ":" + seconds;
     }
 
-    //THE DISPLAY
-
+    //STARTING
     //When you click start the game starts playing and the functions start running
     $("#startButton").click(function (event) {
 
-        //Add the question to the text
-        $("#question").text(objQuestionsAnswers.questionOne.Question);
-        //Have buttons for 4 answers (we can display this with a foorloop that creates so they are not displayed at the beginning)
-        $("#answerA").text(objQuestionsAnswers.questionOne.answerA);
-        $("#answerB").text(objQuestionsAnswers.questionOne.answerB);
-        $("#answerC").text(objQuestionsAnswers.questionOne.answerC);
-        $("#answerD").text(objQuestionsAnswers.questionOne.answerD);
-
-
+        //THE DISPLAY
         //Show the timer
         start()
-        
+        //Add the question to the text
+        $("#question").text(objQuestionsAnswers.questionOne.Question);
+
+        // WINS AND LOOSES
+        //Create a variable that stores the selection the user made
+        var userSelection
+        //Create a function that checks if the answer is right or wrong
+        function answerChecker(){
+            if(userSelection===objQuestionsAnswers.questionOne.correctAnswer){
+                alert("YOU WIN")
+                wins++
+            }
+            else{
+                alert("YOU LOOSE")
+            }
+        }
+
+        //Display 4 buttons and give a value to UserSelection when they click
+
+        $("#answerA").text(objQuestionsAnswers.questionOne.answerA);
+        $("#answerA").click(function (event) {
+            userSelection = "a"
+            answerChecker();
+        })
+
+        $("#answerB").text(objQuestionsAnswers.questionOne.answerB);
+        $("#answerB").click(function (event) {
+            userSelection = "b"
+            answerChecker();
+        })
+
+        $("#answerC").text(objQuestionsAnswers.questionOne.answerC);
+        $("#answerC").click(function (event) {
+            userSelection = "c"
+            answerChecker();
+        })
+
+        $("#answerD").text(objQuestionsAnswers.questionOne.answerD);
+        $("#answerD").click(function (event) {
+            userSelection = "d"
+            answerChecker();
+        })
+
+
+        //THE GAME
+        //Knowing if right and wrong
+
+
+
+
+
+
+
+
+
+
+
+
+        //If onclick.val === true or (this)then you are right
+        // wins ++
+        // else if (!this)
+        // First we can just add an alert
+        // Clear the page and add the image
+        // Reload the function again with the time 
+        // If not find just put a button of next 
+
+
+
 
 
     })
@@ -114,20 +174,6 @@ $(document).ready(function () {
 
 
 
-    //THE GAME
-
-    // Timer starts when on click
-    // Shows a random ArrQuestions[i] and pulls that index of with the values of arrAnswer.i[value]
-    // Adds the text pulled from ArrQuestions[i] & arrAnswer.i[index[g]] (for loop that prints all the possible answers) and prints into the HTML
-
-    //Knowing if right and wrong
-    //If onclick.val === true or (this)then you are right
-    // wins ++
-    // else if (!this)
-    // First we can just add an alert
-    // Clear the page and add the image
-    // Reload the function again with the time 
-    // If not find just put a button of next 
 
     //looses++
     // else
