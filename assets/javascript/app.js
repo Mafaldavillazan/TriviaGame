@@ -134,7 +134,7 @@ $(document).ready(function () {
             function answerChecker() {
 
                 //Create a timer that showcases the answer info for a particular amount of time
-                setTimeout(answerRightShown, 5000);
+                setTimeout(answerRightShown, 0);
                 function answerRightShown() {
                     $("#spaceButtonA").text(objQuestionsAnswers.questionOne.correctAnswerText);
                     //Remove the content from each button
@@ -194,10 +194,9 @@ $(document).ready(function () {
                     userSelection = "a"
                     answerChecker();
                     //Need to reset the page add the text with timer
-
                 })
 
-
+alert
                 //Answer B
 
                 //Create the buttons 
@@ -243,12 +242,6 @@ $(document).ready(function () {
                     userSelection = "d"
                     answerChecker();
                 })
-
-
-                //If the answer is right you reload the function
-                if (wins++) {
-                    alert("YOU ARE RIGHT!")
-                }
 
 
             }
