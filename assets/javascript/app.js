@@ -42,8 +42,6 @@ $(document).ready(function () {
 
     /** 
      * TO DO
-    //Make the timer refresh the page once they selected an answer 
-        //Maybe create a function that adds an image and text to the document when on click
     //Select a random question from the object
     //When time is over show looses and wins
     //When the answer is right reload the trivia function and find another question (can't be repeated)
@@ -80,8 +78,16 @@ $(document).ready(function () {
         if (time < 0) {
             clockRuns = false;
             reset()
+            //Show wins and looses
+            //Clear all the content
+            //Reload with new information
+            $("#spaceButtonA").append("Your wins: " + wins.val());
+            $("#spaceButtonB").append("Your looses: " + looses.val());
+            $("#spaceButtonC").append("Your unanswered: " + unanswered);
         }
+
     }
+
 
 
     //Use the Time converter from past exercise so the time is not displayed in milliseconds
@@ -186,11 +192,15 @@ $(document).ready(function () {
                     //Show the questions again when the time is over
                     setTimeout(showAnswersButtons, 1000)
                     //You remove the text that is showing
+                    
                 }
             }
 
 
             function showAnswersButtons() {
+
+                //INFO FROM PAST QUESTION SHOW BE DELETED
+                $("#answerText").remove();
 
                 //QUESTION
                 //Adding the question selected to the document
@@ -263,8 +273,7 @@ $(document).ready(function () {
                     answerChecker();
                 })
 
-                //INFO FROM PAST QUESTION SHOW BE DELETED
-                $("#answerText").empty();
+                
 
 
             }
