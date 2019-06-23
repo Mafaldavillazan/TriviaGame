@@ -133,8 +133,7 @@ $(document).ready(function () {
             //Create a function that checks if the answer is right or wrong
             function answerChecker() {
 
-                //Create a timer that showcases the answer info for a particular amount of time
-                setTimeout(answerRightShown, 0);
+                //Create a function that shows answer info for a particular amount of time
                 function answerRightShown() {
                     $("#spaceButtonA").text(objQuestionsAnswers.questionOne.correctAnswerText);
                     //Remove the content from each button
@@ -142,6 +141,7 @@ $(document).ready(function () {
                     $("#spaceButtonC").text("");
                     $("#spaceButtonD").text("");
                 }
+            
 
                 if (userSelection === objQuestionsAnswers.questionOne.correctAnswer) {
                     wins++
@@ -150,11 +150,8 @@ $(document).ready(function () {
                     $("#question").text("YOU ARE RIGHT!");
                     //Change the text that shows more information about the answer selection
                     answerRightShown();
-
-                    //If the time of answerRight is less than this then reload a new trivia question
-                    if (setTimeout) {
-                        showAnswersButtons();
-                    }
+                    //Show the questions again when the time is over
+                    setTimeout(showAnswersButtons,1000)
                 }
                 else {
                     looses++
