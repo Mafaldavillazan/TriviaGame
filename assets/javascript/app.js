@@ -14,7 +14,9 @@ $(document).ready(function () {
             answerB: "B from 1",
             answerC: "C from 1",
             answerD: "D from 1",
-            correctAnswer: "a"
+            correctAnswer: "a",
+            correctAnswerText: "The answer A is the correct One",
+            wrongAnswerText: "Uuu no Try Again!"
         },
         questionTwo: {
             Question: "QUESTION 2",
@@ -22,7 +24,8 @@ $(document).ready(function () {
             answerB: "B from 2",
             answerC: "C from 2",
             answerD: "D from 2",
-            correctAnswer: "b"
+            correctAnswer: "b",
+            correctAnswerText: "The answer B is the correct One"
         }
     }
 
@@ -43,7 +46,6 @@ $(document).ready(function () {
         //Maybe create a function that adds an image and text to the document when on click
     //Select a random question from the object
     //When time is over show looses and wins
-    //Create Buttons when the page is loaded
     //When the answer is right reload the trivia function and find another question (can't be repeated)
         //Maybe we have to then push the answer to an array so is not repeated
     */
@@ -117,7 +119,7 @@ $(document).ready(function () {
 
 
         function triviaGame() {
-        
+
 
             //WINS AND LOOSES
             //Create a variable that stores the selection the user made
@@ -126,11 +128,27 @@ $(document).ready(function () {
             function answerChecker() {
                 if (userSelection === objQuestionsAnswers.questionOne.correctAnswer) {
                     wins++
-                    $("#question").text("YOU ARE RIGHT!")
+
+                    //Change the text in the top with you are right
+                    $("#question").text("YOU ARE RIGHT!");
+                    //Change the text that shows more information about the answer selection
+                    $("#spaceButtonA").text(objQuestionsAnswers.questionOne.correctAnswerText);
+                    //Remove the content from each button
+                    $("#spaceButtonB").text("");
+                    $("#spaceButtonC").text("");
+                    $("#spaceButtonD").text("");
                 }
                 else {
                     looses++
-                    //Set time outs for each win or loose
+
+                    //Change the text in the top with you are right
+                    $("#question").text("YOU ARE WRONG!");
+                    //Change the text that shows more information about the answer selection
+                    $("#spaceButtonA").text(objQuestionsAnswers.questionOne.wrongAnswerText);
+                    //Remove the content from each button
+                    $("#spaceButtonB").text("");
+                    $("#spaceButtonC").text("");
+                    $("#spaceButtonD").text("");
 
                 }
             }
@@ -139,7 +157,7 @@ $(document).ready(function () {
             //Adding the question selected to the document
             $("#question").text(objQuestionsAnswers.questionOne.Question);
 
-            
+
             //ANSWERS
             //divide each answer so the content is related to the question selected
 
@@ -156,6 +174,8 @@ $(document).ready(function () {
             $("#answerA").click(function (event) {
                 userSelection = "a"
                 answerChecker();
+                //Need to reset the page add the text with timer
+
             })
 
 
@@ -163,12 +183,12 @@ $(document).ready(function () {
 
             //Create the buttons 
             var $newButtonB = $('<a id="answerB" href="#" class="btn btn-primary space"></a>')
-            $("#spaceButtonA").append($newButtonB);
+            $("#spaceButtonB").append($newButtonB);
 
             //Add the content of that particular question
             $("#answerB").text(objQuestionsAnswers.questionOne.answerB);
-            
-             //If the user clicks that button, give a value to that action that then you can use to compare with the "right answer"
+
+            //If the user clicks that button, give a value to that action that then you can use to compare with the "right answer"
             $("#answerB").click(function (event) {
                 userSelection = "b"
                 answerChecker();
@@ -180,10 +200,10 @@ $(document).ready(function () {
             //Create the buttons 
             var $newButtonC = $('<a id="answerC" href="#" class="btn btn-primary space"></a>')
             $("#spaceButtonC").append($newButtonC);
-            
+
             //Add the content of that particular question
             $("#answerC").text(objQuestionsAnswers.questionOne.answerC);
-            
+
             //If the user clicks that button, give a value to that action that then you can use to compare with the "right answer"
             $("#answerC").click(function (event) {
                 userSelection = "c"
