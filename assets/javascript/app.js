@@ -24,7 +24,6 @@ $(document).ready(function () {
         }
     }
 
-
     //Pick a random question
     /** 
      * ISSUE
@@ -35,18 +34,74 @@ $(document).ready(function () {
     console.log(randomQuestion.Question)
     */
 
+    //THE TIME:
+
+    //Create a timer
+    //Interva
+    var clockRuns = false;
+    var time = 60;
+
+    //function that resets the timer
+    //Call this function when the time is over
+    function reset() {
+        time = 0;
+        $("#timer").text("00");
+    }
+
+    //Function that makes the time go
+    function start() {
+        if (!clockRuns) {
+            intervalId = setInterval(count, 1000);
+            clockRuns = true;
+        }
+    }
+
+    function count() {
+        time--;
+        var currentTime = timeConverter(time);
+        $("#timer").text(currentTime);
+    }
+
+
+    //Use the timeconverter from past exercise so the time is not displayed in milliseconds
+    function timeConverter(t) {
+
+        //  Takes the current time in seconds and convert it to minutes and seconds (mm:ss).
+        var minutes = Math.floor(t / 60);
+        var seconds = t - (minutes * 60);
+
+        if (seconds < 10) {
+            seconds = "0" + seconds;
+        }
+
+        if (minutes === 0) {
+            minutes = "00";
+        }
+
+        else if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+
+        return minutes + ":" + seconds;
+    }
+
     //THE DISPLAY
 
     //When you click start the game starts playing and the functions start running
     $("#startButton").click(function (event) {
-        
+
         //Add the question to the text
         $("#question").text(objQuestionsAnswers.questionOne.Question);
-        //Have buttons for 4 answers (we can display this with a foorloop)
+        //Have buttons for 4 answers (we can display this with a foorloop that creates so they are not displayed at the beginning)
         $("#answerA").text(objQuestionsAnswers.questionOne.answerA);
         $("#answerB").text(objQuestionsAnswers.questionOne.answerB);
         $("#answerC").text(objQuestionsAnswers.questionOne.answerC);
         $("#answerD").text(objQuestionsAnswers.questionOne.answerD);
+
+
+        //Show the timer
+        start()
+        
 
 
     })
@@ -57,7 +112,7 @@ $(document).ready(function () {
 
 
 
-    //Create the timer that refreshes the function
+
 
     //THE GAME
 
