@@ -1,10 +1,6 @@
 $(document).ready(function () {
 
     //THE BASICS
-    // Create global variables for the wining ,losing and unanswered 
-    var wins = 0
-    var looses = 0
-    var unanswered = 0
 
     // Crete an object with questions and answers
     var objQuestionsAnswers = {
@@ -30,15 +26,14 @@ $(document).ready(function () {
     }
 
 
-    //Pick a random question
-    /** 
-     * ISSUE
-    // Jquery that calls each text id to change it with questions 
-    // Issus calling the random question 
-    // $("#question").text(objQuestionsAnswers.questionOne.Question)
-    var randomQuestion =  Object.keys(objQuestionsAnswers)[Math.floor(Math.random()*Object.keys(objQuestionsAnswers).length)]
-    console.log(randomQuestion.Question)
-    */
+    //Create a function the clears the content of everything
+    function clearQuestionAnsAnswers() {
+        $("#question").empty();
+        $("#spaceButtonA").empty();
+        $("#spaceButtonB").empty();
+        $("#spaceButtonC").empty();
+        $("#spaceButtonD").empty();
+    }
 
     /** 
      * TO DO
@@ -49,7 +44,6 @@ $(document).ready(function () {
     */
 
     //THE TIME:
-
     //Create a timer
     var clockRuns = false;
     var time = 60;
@@ -80,10 +74,11 @@ $(document).ready(function () {
             reset()
             //Show wins and looses
             //Clear all the content
+            clearQuestionAnsAnswers()
             //Reload with new information
-            $("#spaceButtonA").append("Your wins: " + wins.val());
-            $("#spaceButtonB").append("Your looses: " + looses.val());
-            $("#spaceButtonC").append("Your unanswered: " + unanswered);
+            $("#spaceButtonA").append("Your wins: " + wins);
+            $("#spaceButtonB").append("Your looses: " + looses);
+            $("#spaceButtonC").append("Your looses: " + unanswered);
         }
 
     }
@@ -128,23 +123,14 @@ $(document).ready(function () {
             alert("TIME IS UP")
         }
 
-        function triviaGame() {
 
+        function triviaGame() {
 
             //WINS AND LOOSES
             //Create a variable that stores the selection the user made
             var userSelection
 
             //CHECKING THE ANSWERS
-
-            //Create a function the clears the content of everything
-            function clearQuestionAnsAnswers() {
-                $("#question").empty();
-                $("#spaceButtonA").empty();
-                $("#spaceButtonB").empty();
-                $("#spaceButtonC").empty();
-                $("#spaceButtonD").empty();
-            }
 
             //Create a function that shows answer info for a particular amount of time
             function answerRightShown() {
@@ -172,30 +158,41 @@ $(document).ready(function () {
 
                 if (userSelection === objQuestionsAnswers.questionOne.correctAnswer) {
                     wins++
-
                     //Change the text in the top with you are right
                     $("#question").text("YOU ARE RIGHT!");
                     //Change the text that shows more information about the answer selection
                     answerRightShown();
                     //You have a new set of questions
+                    //Select a Random question and change the questions
+                    //setTimeout(triviaGameReload, 1000)
                 }
 
-                else {
+                else if (userSelection !== objQuestionsAnswers.questionOne.correctAnswer){
                     looses++
 
                     //Change the text in the top with you are right
                     $("#question").text("YOU ARE WRONG!");
-
                     //Call the function that shows that the text you selected is wrong
                     answerWrongShown()
-
                     //Show the questions again when the time is over
                     setTimeout(showAnswersButtons, 1000)
                     //You remove the text that is showing
-                    
+
+                }
+                else{
+                    unanswered++
                 }
             }
 
+            //Pick a random question
+            /** 
+             * ISSUE
+            // Jquery that calls each text id to change it with questions 
+            // Issus calling the random question 
+            // $("#question").text(objQuestionsAnswers.questionOne.Question)
+            var randomQuestion =  Object.keys(objQuestionsAnswers)[Math.floor(Math.random()*Object.keys(objQuestionsAnswers).length)]
+            console.log(randomQuestion.Question)
+            */
 
             function showAnswersButtons() {
 
@@ -273,7 +270,7 @@ $(document).ready(function () {
                     answerChecker();
                 })
 
-                
+
 
 
             }
