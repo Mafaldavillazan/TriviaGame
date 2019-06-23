@@ -75,6 +75,12 @@ $(document).ready(function () {
         time--;
         var currentTime = timeConverter(time);
         $("#timer").text(currentTime);
+
+        //If the time is lower than 0 then time is over
+        if(time<0){
+            clockRuns = false;
+            reset()
+        }
     }
 
 
@@ -116,27 +122,39 @@ $(document).ready(function () {
             alert("TIME IS UP")
         }
 
-
-
         function triviaGame() {
 
 
             //WINS AND LOOSES
             //Create a variable that stores the selection the user made
             var userSelection
+
+
             //Create a function that checks if the answer is right or wrong
             function answerChecker() {
+
+                //Create a timer that showcases the answer info for a particular amount of time
+                setTimeout(answerRightShown, 5000);
+                function answerRightShown() {
+                    $("#spaceButtonA").text(objQuestionsAnswers.questionOne.correctAnswerText);
+                    //Remove the content from each button
+                    $("#spaceButtonB").text("");
+                    $("#spaceButtonC").text("");
+                    $("#spaceButtonD").text("");
+                }
+
                 if (userSelection === objQuestionsAnswers.questionOne.correctAnswer) {
                     wins++
 
                     //Change the text in the top with you are right
                     $("#question").text("YOU ARE RIGHT!");
                     //Change the text that shows more information about the answer selection
-                    $("#spaceButtonA").text(objQuestionsAnswers.questionOne.correctAnswerText);
-                    //Remove the content from each button
-                    $("#spaceButtonB").text("");
-                    $("#spaceButtonC").text("");
-                    $("#spaceButtonD").text("");
+                    answerRightShown();
+
+                    //If the time of answerRight is less than this then reload a new trivia question
+                    if (setTimeout) {
+                        showAnswersButtons();
+                    }
                 }
                 else {
                     looses++
@@ -161,75 +179,81 @@ $(document).ready(function () {
             //ANSWERS
             //divide each answer so the content is related to the question selected
 
-            //Answer A
+            function showAnswersButtons() {
+                //Answer A
 
-            //Create the buttons 
-            var $newButtonA = $('<a id="answerA" href="#" class="btn btn-primary space"></a>')
-            $("#spaceButtonA").append($newButtonA);
+                //Create the buttons 
+                var $newButtonA = $('<a id="answerA" href="#" class="btn btn-primary space"></a>')
+                $("#spaceButtonA").append($newButtonA);
 
-            //Add the content of that particular question
-            $("#answerA").text(objQuestionsAnswers.questionOne.answerA);
+                //Add the content of that particular question
+                $("#answerA").text(objQuestionsAnswers.questionOne.answerA);
 
-            //If the user clicks that button, give a value to that action that then you can use to compare with the "right answer"
-            $("#answerA").click(function (event) {
-                userSelection = "a"
-                answerChecker();
-                //Need to reset the page add the text with timer
+                //If the user clicks that button, give a value to that action that then you can use to compare with the "right answer"
+                $("#answerA").click(function (event) {
+                    userSelection = "a"
+                    answerChecker();
+                    //Need to reset the page add the text with timer
 
-            })
-
-
-            //Answer B
-
-            //Create the buttons 
-            var $newButtonB = $('<a id="answerB" href="#" class="btn btn-primary space"></a>')
-            $("#spaceButtonB").append($newButtonB);
-
-            //Add the content of that particular question
-            $("#answerB").text(objQuestionsAnswers.questionOne.answerB);
-
-            //If the user clicks that button, give a value to that action that then you can use to compare with the "right answer"
-            $("#answerB").click(function (event) {
-                userSelection = "b"
-                answerChecker();
-            })
+                })
 
 
-            //Answer C
+                //Answer B
 
-            //Create the buttons 
-            var $newButtonC = $('<a id="answerC" href="#" class="btn btn-primary space"></a>')
-            $("#spaceButtonC").append($newButtonC);
+                //Create the buttons 
+                var $newButtonB = $('<a id="answerB" href="#" class="btn btn-primary space"></a>')
+                $("#spaceButtonB").append($newButtonB);
 
-            //Add the content of that particular question
-            $("#answerC").text(objQuestionsAnswers.questionOne.answerC);
+                //Add the content of that particular question
+                $("#answerB").text(objQuestionsAnswers.questionOne.answerB);
 
-            //If the user clicks that button, give a value to that action that then you can use to compare with the "right answer"
-            $("#answerC").click(function (event) {
-                userSelection = "c"
-                answerChecker();
-            })
-
-            //Answer D
-
-            //Create the buttons 
-            var $newButtonD = $('<a id="answerD" href="#" class="btn btn-primary space"></a>')
-            $("#spaceButtonC").append($newButtonD);
-
-            //Add the content of that particular question
-            $("#answerD").text(objQuestionsAnswers.questionOne.answerD);
-
-            //If the user clicks that button, give a value to that action that then you can use to compare with the "right answer"
-            $("#answerD").click(function (event) {
-                userSelection = "d"
-                answerChecker();
-            })
+                //If the user clicks that button, give a value to that action that then you can use to compare with the "right answer"
+                $("#answerB").click(function (event) {
+                    userSelection = "b"
+                    answerChecker();
+                })
 
 
-            //If the answer is right you reload the function
-            if (wins++) {
-                alert("YOU ARE RIGHT!")
+                //Answer C
+
+                //Create the buttons 
+                var $newButtonC = $('<a id="answerC" href="#" class="btn btn-primary space"></a>')
+                $("#spaceButtonC").append($newButtonC);
+
+                //Add the content of that particular question
+                $("#answerC").text(objQuestionsAnswers.questionOne.answerC);
+
+                //If the user clicks that button, give a value to that action that then you can use to compare with the "right answer"
+                $("#answerC").click(function (event) {
+                    userSelection = "c"
+                    answerChecker();
+                })
+
+                //Answer D
+
+                //Create the buttons 
+                var $newButtonD = $('<a id="answerD" href="#" class="btn btn-primary space"></a>')
+                $("#spaceButtonC").append($newButtonD);
+
+                //Add the content of that particular question
+                $("#answerD").text(objQuestionsAnswers.questionOne.answerD);
+
+                //If the user clicks that button, give a value to that action that then you can use to compare with the "right answer"
+                $("#answerD").click(function (event) {
+                    userSelection = "d"
+                    answerChecker();
+                })
+
+
+                //If the answer is right you reload the function
+                if (wins++) {
+                    alert("YOU ARE RIGHT!")
+                }
+
+
             }
+
+            showAnswersButtons()
 
 
         }
