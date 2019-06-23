@@ -20,14 +20,26 @@ $(document).ready(function () {
             wrongAnswerText: "Uuu no Try Again!"
         },
         questionTwo: {
-            Question: "QUESTION 2",
-            answerA: "A from 2",
-            answerB: "B from 2",
-            answerC: "C from 2",
-            answerD: "D from 2",
+            Question: "QUESTION 2: What is an Isotope",
+            answerA: "A: Atoms with different mass",
+            answerB: "B Atoms of same element different mass",
+            answerC: "C: Protons with the same mass",
+            answerD: "D: Electrons with different mass",
             correctAnswer: "b",
-            correctAnswerText: "The answer B is the correct One"
+            correctAnswerText: "YOU GOT IT! Isotopes are atoms with the same protons but they have different mass",
+            wrongAnswerText: "You are close but NO!"
+        },
+        questionThree: {
+            Question: "QUESTION 3:  The periodic table gives us information about...",
+            answerA: "A: Only the number of protons an Atom has",
+            answerB: "B The number of protons, electrons and neutrons an Atom has",
+            answerC: "C: Only the number of electrons and neutrons an Atom has",
+            answerD: "D: The number of Atoms a proton has",
+            correctAnswer: "b",
+            correctAnswerText: "AMAZING! The periodic table gives us information about protons, electrons and neutrons from an Atom",
+            wrongAnswerText: "Really? Read better please..."
         }
+
     }
 
 
