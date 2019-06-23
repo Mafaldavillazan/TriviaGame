@@ -1,17 +1,22 @@
 $(document).ready(function () {
 
-    //THE BASICS
+    //THE BASICs
+    //Create variables for wins and looses
+
+    var wins = 0;
+    var looses = 0;
+    var unanswered = 0;
 
     // Crete an object with questions and answers
     var objQuestionsAnswers = {
         questionOne: {
-            Question: "QUESTION 1",
-            answerA: "A from 1",
-            answerB: "B from 1",
-            answerC: "C from 1",
-            answerD: "D from 1",
+            Question: "QUESTION 1: What makes an element unique from other elements?",
+            answerA: "A: Protons",
+            answerB: "B: Electrons",
+            answerC: "C: Neutrons",
+            answerD: "D: None of a above",
             correctAnswer: "a",
-            correctAnswerText: "The answer A is the correct One",
+            correctAnswerText: "OOOH YES! Protons are what make an element unique from others",
             wrongAnswerText: "Uuu no Try Again!"
         },
         questionTwo: {
@@ -38,7 +43,6 @@ $(document).ready(function () {
     /** 
      * TO DO
     //Select a random question from the object
-    //When time is over show looses and wins
     //When the answer is right reload the trivia function and find another question (can't be repeated)
         //Maybe we have to then push the answer to an array so is not repeated
     */
@@ -78,7 +82,9 @@ $(document).ready(function () {
             //Reload with new information
             $("#spaceButtonA").append("Your wins: " + wins);
             $("#spaceButtonB").append("Your looses: " + looses);
-            $("#spaceButtonC").append("Your looses: " + unanswered);
+            $("#spaceButtonC").append("Your Unanswered: " + unanswered);
+
+            $("#question").text("YOUR RESULTS:");
         }
 
     }
@@ -110,6 +116,8 @@ $(document).ready(function () {
     //STARTING
     //When you click start the game starts playing and the functions start running
     $("#startButton").click(function (event) {
+
+        
 
         //THE TIME STARTS
         //Show the timer
@@ -191,6 +199,8 @@ $(document).ready(function () {
             // Issus calling the random question 
             // $("#question").text(objQuestionsAnswers.questionOne.Question)
             var randomQuestion =  Object.keys(objQuestionsAnswers)[Math.floor(Math.random()*Object.keys(objQuestionsAnswers).length)]
+            console.log(randomQuestion)
+            $("#question").text(objQuestionsAnswers.randomQuestion.Question)
             console.log(randomQuestion.Question)
             */
 
