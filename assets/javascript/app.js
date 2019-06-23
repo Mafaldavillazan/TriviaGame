@@ -77,7 +77,7 @@ $(document).ready(function () {
         $("#timer").text(currentTime);
 
         //If the time is lower than 0 then time is over
-        if(time<0){
+        if (time < 0) {
             clockRuns = false;
             reset()
         }
@@ -129,19 +129,40 @@ $(document).ready(function () {
             //Create a variable that stores the selection the user made
             var userSelection
 
+            //CHECKING THE ANSWERS
+
+            //Create a function the clears the content of everything
+            function clearQuestionAnsAnswers() {
+                $("#question").empty();
+                $("#spaceButtonA").empty();
+                $("#spaceButtonB").empty();
+                $("#spaceButtonC").empty();
+                $("#spaceButtonD").empty();
+            }
+
+            //Create a function that shows answer info for a particular amount of time
+            function answerRightShown() {
+                //Create a new space for the answer information to appear
+                var $answerText = $('<h5 id="answerText" class="card-title">Special title treatment</h5>')
+                $("#answerTextSpace").append($answerText);
+                $("#answerText").html(objQuestionsAnswers.questionOne.correctAnswerText);
+                //Remove the content from each button
+                clearQuestionAnsAnswers();
+            }
+
+
+            //Create a function that shows that is a wrong answer info for a particular amount of time
+            function answerWrongShown() {
+                var $answerText = $('<h5 id="answerText" class="card-title">Special title treatment</h5>')
+                $("#answerTextSpace").append($answerText);
+                $("#answerText").html(objQuestionsAnswers.questionOne.wrongAnswerText);
+                //Remove the content from each button
+                clearQuestionAnsAnswers();
+            }
+
 
             //Create a function that checks if the answer is right or wrong
             function answerChecker() {
-
-                //Create a function that shows answer info for a particular amount of time
-                function answerRightShown() {
-                    $("#spaceButtonA").text(objQuestionsAnswers.questionOne.correctAnswerText);
-                    //Remove the content from each button
-                    $("#spaceButtonB").text("");
-                    $("#spaceButtonC").text("");
-                    $("#spaceButtonD").text("");
-                }
-            
 
                 if (userSelection === objQuestionsAnswers.questionOne.correctAnswer) {
                     wins++
@@ -150,33 +171,36 @@ $(document).ready(function () {
                     $("#question").text("YOU ARE RIGHT!");
                     //Change the text that shows more information about the answer selection
                     answerRightShown();
-                    //Show the questions again when the time is over
-                    setTimeout(showAnswersButtons,1000)
+                    //You have a new set of questions
                 }
+
                 else {
                     looses++
 
                     //Change the text in the top with you are right
                     $("#question").text("YOU ARE WRONG!");
-                    //Change the text that shows more information about the answer selection
-                    $("#spaceButtonA").text(objQuestionsAnswers.questionOne.wrongAnswerText);
-                    //Remove the content from each button
-                    $("#spaceButtonB").text("");
-                    $("#spaceButtonC").text("");
-                    $("#spaceButtonD").text("");
 
+                    //Call the function that shows that the text you selected is wrong
+                    answerWrongShown()
+
+                    //Show the questions again when the time is over
+                    setTimeout(showAnswersButtons, 1000)
+                    //You remove the text that is showing
                 }
             }
 
-            //QUESTION
-            //Adding the question selected to the document
-            $("#question").text(objQuestionsAnswers.questionOne.Question);
-
-
-            //ANSWERS
-            //divide each answer so the content is related to the question selected
 
             function showAnswersButtons() {
+
+                //QUESTION
+                //Adding the question selected to the document
+                $("#question").text(objQuestionsAnswers.questionOne.Question);
+
+
+                //ANSWERS
+                //divide each answer so the content is related to the question selected
+
+
                 //Answer A
 
                 //Create the buttons 
@@ -193,7 +217,6 @@ $(document).ready(function () {
                     //Need to reset the page add the text with timer
                 })
 
-alert
                 //Answer B
 
                 //Create the buttons 
@@ -229,7 +252,7 @@ alert
 
                 //Create the buttons 
                 var $newButtonD = $('<a id="answerD" href="#" class="btn btn-primary space"></a>')
-                $("#spaceButtonC").append($newButtonD);
+                $("#spaceButtonD").append($newButtonD);
 
                 //Add the content of that particular question
                 $("#answerD").text(objQuestionsAnswers.questionOne.answerD);
@@ -240,9 +263,13 @@ alert
                     answerChecker();
                 })
 
+                //INFO FROM PAST QUESTION SHOW BE DELETED
+                $("#answerText").empty();
+
 
             }
 
+            //show the buttons when the person clicks start
             showAnswersButtons()
 
 
