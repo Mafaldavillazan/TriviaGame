@@ -43,6 +43,13 @@ $(document).ready(function () {
     }
 
 
+    console.log("Information needed" + objQuestionsAnswers.questionOne.Question)
+    var randomQuestion = Object.keys(objQuestionsAnswers)[Math.floor(Math.random() * Object.keys(objQuestionsAnswers).length)]
+    console.log("Random question :" + randomQuestion)
+    console.log("Random question and question:" + randomQuestion.Question)
+    //console.log("Random question and question:" + objQuestionsAnswers.randomQuestion.Question)
+
+
     //Create a function the clears the content of everything
     function clearQuestionAnsAnswers() {
         $("#question").empty();
@@ -129,7 +136,7 @@ $(document).ready(function () {
     //When you click start the game starts playing and the functions start running
     $("#startButton").click(function (event) {
 
-        
+
 
         //THE TIME STARTS
         //Show the timer
@@ -187,7 +194,7 @@ $(document).ready(function () {
                     //setTimeout(triviaGameReload, 1000)
                 }
 
-                else if (userSelection !== objQuestionsAnswers.questionOne.correctAnswer){
+                else if (userSelection !== objQuestionsAnswers.questionOne.correctAnswer) {
                     looses++
 
                     //Change the text in the top with you are right
@@ -199,7 +206,7 @@ $(document).ready(function () {
                     //You remove the text that is showing
 
                 }
-                else{
+                else {
                     unanswered++
                 }
             }
@@ -209,11 +216,11 @@ $(document).ready(function () {
              * ISSUE
             // Jquery that calls each text id to change it with questions 
             // Issus calling the random question 
-            // $("#question").text(objQuestionsAnswers.questionOne.Question)
+            // console.log("Information needed" + objQuestionsAnswers.questionOne.Question)
             var randomQuestion =  Object.keys(objQuestionsAnswers)[Math.floor(Math.random()*Object.keys(objQuestionsAnswers).length)]
-            console.log(randomQuestion)
+            console.log("Random question :" + randomQuestion)
             $("#question").text(objQuestionsAnswers.randomQuestion.Question)
-            console.log(randomQuestion.Question)
+            console.log("Random question and question:" + randomQuestion.Question)
             */
 
             function showAnswersButtons() {
