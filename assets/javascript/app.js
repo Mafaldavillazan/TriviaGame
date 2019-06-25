@@ -43,10 +43,9 @@ $(document).ready(function () {
     }
 
 
-    console.log("Information needed" + objQuestionsAnswers.questionOne.Question)
     var randomQuestion = Object.keys(objQuestionsAnswers)[Math.floor(Math.random() * Object.keys(objQuestionsAnswers).length)]
     console.log("Random question :" + randomQuestion)
-    console.log("Random question and question:" + randomQuestion.Question)
+    console.log("Random question and question:" + objQuestionsAnswers[randomQuestion].Question)
     //console.log("Random question and question:" + objQuestionsAnswers.randomQuestion.Question)
 
 
@@ -164,7 +163,7 @@ $(document).ready(function () {
                 //Create a new space for the answer information to appear
                 var $answerText = $('<h5 id="answerText" class="card-title">Special title treatment</h5>')
                 $("#answerTextSpace").append($answerText);
-                $("#answerText").html(objQuestionsAnswers.questionOne.correctAnswerText);
+                $("#answerText").html(objQuestionsAnswers[randomQuestion].correctAnswerText);
                 //Remove the content from each button
                 clearQuestionAnsAnswers();
             }
@@ -174,7 +173,7 @@ $(document).ready(function () {
             function answerWrongShown() {
                 var $answerText = $('<h5 id="answerText" class="card-title">Special title treatment</h5>')
                 $("#answerTextSpace").append($answerText);
-                $("#answerText").html(objQuestionsAnswers.questionOne.wrongAnswerText);
+                $("#answerText").html(objQuestionsAnswers[randomQuestion].wrongAnswerText);
                 //Remove the content from each button
                 clearQuestionAnsAnswers();
             }
@@ -183,7 +182,7 @@ $(document).ready(function () {
             //Create a function that checks if the answer is right or wrong
             function answerChecker() {
 
-                if (userSelection === objQuestionsAnswers.questionOne.correctAnswer) {
+                if (userSelection === objQuestionsAnswers[randomQuestion].correctAnswer) {
                     wins++
                     //Change the text in the top with you are right
                     $("#question").text("YOU ARE RIGHT!");
@@ -194,7 +193,7 @@ $(document).ready(function () {
                     //setTimeout(triviaGameReload, 1000)
                 }
 
-                else if (userSelection !== objQuestionsAnswers.questionOne.correctAnswer) {
+                else if (userSelection !== objQuestionsAnswers[randomQuestion].correctAnswer) {
                     looses++
 
                     //Change the text in the top with you are right
@@ -230,7 +229,7 @@ $(document).ready(function () {
 
                 //QUESTION
                 //Adding the question selected to the document
-                $("#question").text(objQuestionsAnswers.questionOne.Question);
+                $("#question").text(objQuestionsAnswers[randomQuestion].Question);
 
 
                 //ANSWERS
@@ -244,7 +243,7 @@ $(document).ready(function () {
                 $("#spaceButtonA").append($newButtonA);
 
                 //Add the content of that particular question
-                $("#answerA").text(objQuestionsAnswers.questionOne.answerA);
+                $("#answerA").text(objQuestionsAnswers[randomQuestion].answerA);
 
                 //If the user clicks that button, give a value to that action that then you can use to compare with the "right answer"
                 $("#answerA").click(function (event) {
@@ -260,7 +259,7 @@ $(document).ready(function () {
                 $("#spaceButtonB").append($newButtonB);
 
                 //Add the content of that particular question
-                $("#answerB").text(objQuestionsAnswers.questionOne.answerB);
+                $("#answerB").text(objQuestionsAnswers[randomQuestion].answerB);
 
                 //If the user clicks that button, give a value to that action that then you can use to compare with the "right answer"
                 $("#answerB").click(function (event) {
@@ -276,7 +275,7 @@ $(document).ready(function () {
                 $("#spaceButtonC").append($newButtonC);
 
                 //Add the content of that particular question
-                $("#answerC").text(objQuestionsAnswers.questionOne.answerC);
+                $("#answerC").text(objQuestionsAnswers[randomQuestion].answerC);
 
                 //If the user clicks that button, give a value to that action that then you can use to compare with the "right answer"
                 $("#answerC").click(function (event) {
@@ -291,7 +290,7 @@ $(document).ready(function () {
                 $("#spaceButtonD").append($newButtonD);
 
                 //Add the content of that particular question
-                $("#answerD").text(objQuestionsAnswers.questionOne.answerD);
+                $("#answerD").text(objQuestionsAnswers[randomQuestion].answerD);
 
                 //If the user clicks that button, give a value to that action that then you can use to compare with the "right answer"
                 $("#answerD").click(function (event) {
