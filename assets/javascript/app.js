@@ -190,7 +190,8 @@ $(document).ready(function () {
                     answerRightShown();
                     //You have a new set of questions
                     //Select a Random question and change the questions
-                    //setTimeout(triviaGameReload, 1000)
+                    randomQuestion = Object.keys(objQuestionsAnswers)[Math.floor(Math.random() * Object.keys(objQuestionsAnswers).length)]
+                    setTimeout(triviaGame, 1000)
                 }
 
                 else if (userSelection !== objQuestionsAnswers[randomQuestion].correctAnswer) {
@@ -209,18 +210,6 @@ $(document).ready(function () {
                     unanswered++
                 }
             }
-
-            //Pick a random question
-            /** 
-             * ISSUE
-            // Jquery that calls each text id to change it with questions 
-            // Issus calling the random question 
-            // console.log("Information needed" + objQuestionsAnswers.questionOne.Question)
-            var randomQuestion =  Object.keys(objQuestionsAnswers)[Math.floor(Math.random()*Object.keys(objQuestionsAnswers).length)]
-            console.log("Random question :" + randomQuestion)
-            $("#question").text(objQuestionsAnswers.randomQuestion.Question)
-            console.log("Random question and question:" + randomQuestion.Question)
-            */
 
             function showAnswersButtons() {
 
